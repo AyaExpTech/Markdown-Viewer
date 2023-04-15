@@ -80,19 +80,20 @@ window.addEventListener("load", function () {
         })
         // 6. すべてのファイルに対してmd→htmlを行いグローバル配列`htmlList`に格納
         htmlList = [];
-        fileList.forEach(f => {
+        for (let i = 0; i < fileList.length; i++) {
             // ⅰ. とりあえず読ませる
             const reader = new FileReader();
-            reader.readAsText(f);
+            reader.readAsText(fileList[i]);
             reader.onload = (event) => {
                 // ⅱ. 文書を保管するためのarticle要素を用意
                 let article = document.createElement("article");
                 // ⅲ. 読み込んだtextをmarkedに渡してhtml文字列にparse
                 article.innerHTML = marked.parse(reader.result);
+                console.log(article);
                 // ⅳ. htmlListにぶん投げる
-                htmlList.push(article);
+                htmlList[i] = article;
             };
-        });
+        }
         // 7. div#listの中のbuttonを再生成
         $(`#list`)[0].innerHTML = "";
         for (let i = 0; i < fileList.length; i++) {
