@@ -43,11 +43,7 @@ const loadFile = (fileID) => {
     $(`#list>button`)[fileID].classList.add("now");
 };
 
-/**
- * ファイル名とタイトルから、画面左側に入れるべきbutton要素を生成します。
- */
-
-window.onload = () => {
+window.addEventListener("load", function () {
     /**
      * bodyにファイルがドラッグされはじめたら#dropの色をちょっと青っぽくする
      */
@@ -113,4 +109,4 @@ window.onload = () => {
             loadFile(nowOpen);
         });
     });
-};
+});

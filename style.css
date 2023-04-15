@@ -71,8 +71,8 @@ header {
     position: fixed;
     left: 0;
     top: 0;
-    /* 高さ6rem取る */
-    height: 6rem;
+    /* 高さ4rem取る */
+    height: 4rem;
     width: 100%;
     /* 背景色を技研カラーにする */
     background: #222244;
@@ -91,13 +91,17 @@ header {
 }
 
 header>* {
-    /* 高さを4remに制限 */
-    height: 4rem;
-    /* 上下1remにmarginをとって中央に配置 */
-    margin: 1rem 0;
+    /* 高さを3remに制限 */
+    height: 3rem;
+    /* 上下0.5remにmarginをとって中央に配置 */
+    margin: 0.5rem 0;
     /* 文字も上下中央揃え */
-    font-size: 2rem;
-    line-height: 4rem;
+    font-size: 1.25rem;
+    line-height: 3rem;
+}
+
+header>img {
+    width: 3rem;
 }
 
 /*==============================================================
@@ -123,8 +127,8 @@ main>* {
 }
 
 #list {
-    /* 全体の30%を占める */
-    width: 30%;
+    /* 全体の25%を占める */
+    width: 25%;
     /* 背景色を黒っぽくする */
     background: #171717;
     /* 影を作る */
@@ -132,8 +136,50 @@ main>* {
 }
 
 #viewer {
-    /* 全体の70%を占める */
-    width: 70%;
+    /* 全体の75%を占める */
+    width: 75%;
+}
+
+@media screen and (max-width:600px) {
+    main>* {
+        transition: width 0.3s;
+    }
+
+    #list {
+        width: 3%;
+    }
+
+    #viewer {
+        width: 97%;
+    }
+
+    #list:hover {
+        width: 85%;
+    }
+
+    #list:hover+#viewer {
+        width: 15%;
+    }
+
+    main>* * {
+        transition: opacity 0.3s;
+    }
+
+    #list * {
+        opacity: 0;
+    }
+
+    #list:hover * {
+        opacity: 1;
+    }
+
+    #viewer * {
+        opacity: 1;
+    }
+
+    #list:hover+#viewer * {
+        opacity: 0;
+    }
 }
 
 /*==============================================================
@@ -141,8 +187,12 @@ main>* {
 ==============================================================*/
 
 main>*::-webkit-scrollbar {
-    /* スクロールバーは非表示！ */
-    display: none;
+    width: 4px;
+}
+
+main>*::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 4px;
 }
 
 /*==============================================================
@@ -221,7 +271,3 @@ main>*::-webkit-scrollbar {
     /* 背景色を少しだけ暗く */
     background: #303030;
 }
-
-/*==============================================================
-    ファイルビューワー部分(article)
-==============================================================*/

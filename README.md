@@ -16,7 +16,7 @@ Follow one of the following licenses.
 
 ## 更新履歴
 
-2023-04-XX `v1.0.0`
+2023-04-15 `v1.0.0`
 - 公開
 
 2023-04-14 `v0.0.0`
