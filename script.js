@@ -4,14 +4,6 @@
  * @returns {NodeList}
  */
 const $ = s => document.querySelectorAll(s);
-
-/**
- * ゴリ押し実装(setTimeout)をやりやすくするためのやつ
- * @param {Number} ms - 待つ秒数(ミリ秒)
- * @param {Function} f - 待ったあとに実行する関数
- */
-const wait = (ms, f) => setTimeout(f, ms);
-
 /**
  * ファイル一覧
  * @type {File[]}
@@ -101,22 +93,20 @@ window.addEventListener("load", function () {
                 htmlList.push(article);
             };
         });
-        wait(50 * fileList.length, () => {
-            // 7. div#listの中のbuttonを再生成
-            $(`#list`)[0].innerHTML = "";
-            for (let i = 0; i < fileList.length; i++) {
-                let button = document.createElement("button");
-                let title = document.createElement("b");
-                let name = document.createElement("sub");
-                title.innerText = htmlList[i].querySelector(`h1`).innerText;
-                name.innerText = fileList[i].name;
-                button.appendChild(title);
-                button.appendChild(name);
-                button.setAttribute('onclick', `loadFile(${i})`);
-                $(`#list`)[0].appendChild(button);
-            }
-            // 7. とりあえず一番最初のファイルを開いておく(すでに開いたことがあればそれが開く)
-            loadFile(nowOpen);
-        });
+        // 7. div#listの中のbuttonを再生成
+        $(`#list`)[0].innerHTML = "";
+        for (let i = 0; i < fileList.length; i++) {
+            let button = document.createElement("button");
+            let title = document.createElement("b");
+            let name = document.createElement("sub");
+            title.innerText = htmlList[i].querySelector(`h1`).innerText;
+            name.innerText = fileList[i].name;
+            button.appendChild(title);
+            button.appendChild(name);
+            button.setAttribute('onclick', `loadFile(${i})`);
+            $(`#list`)[0].appendChild(button);
+        }
+        // 7. とりあえず一番最初のファイルを開いておく(すでに開いたことがあればそれが開く)
+        loadFile(nowOpen);
     });
 });
