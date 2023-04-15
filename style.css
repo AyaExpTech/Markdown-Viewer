@@ -5,8 +5,8 @@
 /* 'M PLUS 1p' */
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&display=swap');
 
-/* 'Font Awesome 5 Free' */
-@import url('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+/* 'Font Awesome 6 Free' */
+@import url('https://use.fontawesome.com/releases/v6.4.0/css/all.css');
 
 /*==============================================================
     Normalize.css
@@ -122,8 +122,8 @@ main>* {
     overflow-y: scroll;
     /* 中身の要素は端から0.5rem離す */
     padding: 0.5rem;
-    /* headerに隠れる分の調整のために上だけpaddingを6.5remに */
-    padding-top: 6.5rem;
+    /* headerに隠れる分の調整のために上だけpaddingを4.5remに */
+    padding-top: 4.5rem;
 }
 
 #list {
@@ -195,6 +195,11 @@ main>*::-webkit-scrollbar-thumb {
     border-radius: 4px;
 }
 
+article {
+    /* 綾急技研宣伝部分を考慮して下を5rem開ける */
+    margin-bottom: 5rem;
+}
+
 /*==============================================================
     ファイル一覧(#list)
 ==============================================================*/
@@ -225,6 +230,11 @@ main>*::-webkit-scrollbar-thumb {
 #list>*+button {
     /* 直前のbuttonとの間に隙間を設ける */
     margin-top: 0.25rem;
+}
+
+#list>button:last-child {
+    /* 綾急技研宣伝部分を考慮して下を5rem開ける */
+    margin-bottom: 5rem;
 }
 
 #list>button>b {
@@ -270,4 +280,65 @@ main>*::-webkit-scrollbar-thumb {
 #list>button:active {
     /* 背景色を少しだけ暗く */
     background: #303030;
+}
+
+/*==============================================================
+    綾急技研宣伝部分(footer)
+==============================================================*/
+
+footer {
+    /* 左下に独立して配置 */
+    left: 0;
+    bottom: 1rem;
+    position: fixed;
+    /* ファイル一覧より上 */
+    z-index: 80;
+    /* 高さ2rem */
+    height: 3rem;
+    /* 背景色を青色に */
+    background: #222244;
+    /* 右側を丸める */
+    border-radius: 0 4rem 4rem 0;
+    /* 白で影をつける */
+    box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.33);
+    /* flexboxを指定 */
+    display: flex;
+    /* 左に余裕をもたせる */
+    padding-left: 0.5rem;
+}
+
+footer>* {
+    font-family: 'Font Awesome 6 Free', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 2.4rem;
+    /* ちょうどいい感じに収まる大きさにする */
+    display: block;
+    margin: 0.3rem 0.2rem;
+    height: 2.4rem;
+    width: 2.4rem;
+    border-radius: 4rem;
+}
+
+footer>a {
+    text-decoration: none;
+    /* 背景を白に */
+    color: #333333;
+    background: #ebebeb;
+    border: 1px solid #171717;
+    /* 白で影をつける */
+    box-shadow: 0px 1px 4px 0px rgba(255, 255, 255, 0.33);
+    transform: translateY(-1px) scale(1.00);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+footer>a:hover {
+    box-shadow: 0px 1px 6px 0px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px) scale(1.05);
+}
+
+footer>a:active {
+    box-shadow: 0px 0px 2px 0px rgba(255, 255, 255, 0.2);
+    transform: translateY(0px) scale(0.97);
 }

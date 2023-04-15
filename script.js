@@ -76,7 +76,17 @@ window.addEventListener("load", function () {
         let files = Array.from(event.dataTransfer.files);
         // 4. 取得したファイルをグローバル配列`fileList`へ
         fileList.push(...files);
-        // 5. すべてのファイルに対してmd→htmlを行いグローバル配列`htmlList`に格納
+        // 5. fileListを名前順にソート
+        fileList.sort((a, b) => {
+            if (a.name < b.name) {
+                return -1;
+            }
+            if (a.name > b.name) {
+                return 1;
+            }
+            return 0;
+        })
+        // 6. すべてのファイルに対してmd→htmlを行いグローバル配列`htmlList`に格納
         htmlList = [];
         fileList.forEach(f => {
             // ⅰ. とりあえず読ませる
@@ -91,8 +101,8 @@ window.addEventListener("load", function () {
                 htmlList.push(article);
             };
         });
-        wait(33.3 * fileList.length, () => {
-            // 6. div#listの中のbuttonを再生成
+        wait(50 * fileList.length, () => {
+            // 7. div#listの中のbuttonを再生成
             $(`#list`)[0].innerHTML = "";
             for (let i = 0; i < fileList.length; i++) {
                 let button = document.createElement("button");
