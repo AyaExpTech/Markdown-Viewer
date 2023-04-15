@@ -8,15 +8,30 @@
     <!-- 設定 -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="AXT_Markdown-Viewer">
-    <meta property="og:description" content="綾急技研制作の">
+    <meta property="og:description" content="綾急技研制作のMarkdownビューワー">
     <meta property="og:image" content="https://axtech.dev/img/thumbnail.png">
     <meta name="twitter:card" content="summary">
+    <!-- 外部参照 -->
+    <script src="https://cdn.jsdelivr.net/gh/AyaExpTech/AXT-func.js@v3.4.0/script.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/markedjs/marked@v4.3.0/marked.min.js"></script>
     <!-- 参照 -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="view.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
-
+    <div id="overlay"></div>
+    <header>
+        <img loading="lazy" src="https://axtech.dev/img/logo.svg">
+        <p>AXT_Markdown-Viewer</p>
+    </header>
+    <main>
+        <div id="list">
+            <p style="text-align: center;width:100%;">markdownファイルをドロップして開始</p>
+        </div>
+        <div id="viewer"></div>
+    </main>
 </body>
 
 </html>

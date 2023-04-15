@@ -1,9 +1,7 @@
 # AXT_Markdown-Viewer
 
-簡易的なMarkdownファイルビューワーです。
-
-任意のフォルダを読み込むことができます。  
-また、zipファイルも読み込めます。
+簡易的なMarkdownファイルビューワーです。  
+任意ファイル群を読みやすく……を意識したつもりです。
 
 ## 規約
 
@@ -17,6 +15,9 @@ Follow one of the following licenses.
 - "The MIT License" …… https://licenses.opensource.jp/MIT/MIT.html
 
 ## 更新履歴
+
+2023-04-XX `v1.0.0`
+- 公開
 
 2023-04-14 `v0.0.0`
 - リポジトリ追加
