@@ -1,0 +1,273 @@
+/*==============================================================
+    webフォントの読み込み
+==============================================================*/
+
+/* 'M PLUS 1p' */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&display=swap');
+
+/* 'Font Awesome 5 Free' */
+@import url('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+
+/*==============================================================
+    Normalize.css
+==============================================================*/
+
+* {
+    margin: 0;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ebebeb;
+    font-family: 'M PLUS 1p', sans-serif;
+}
+
+:where(ul, ol, li) {
+    padding-left: revert;
+}
+
+/*==============================================================
+    body
+==============================================================*/
+
+body {
+    /* 画面いっぱい以上の大きさにしておく */
+    height: 100vh;
+    width: 100vw;
+    /* 背景は#ebebebにしておく */
+    background-color: #ebebeb;
+}
+
+/*==============================================================
+    ファイルドロップの視覚表示要素(#overlay)
+==============================================================*/
+
+#overlay {
+    /* 他要素と分離して画面いっぱいに配置 */
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    /* マウス操作を後ろの要素に貫通させる */
+    pointer-events: none;
+    /* 他要素より上側に配置 */
+    z-index: 100;
+    /* 背景色は透明にしておく */
+    background: rgba(67, 67, 132, 0);
+    /* 背景色は変化をなめらかにするように設定 */
+    transition: background 0.3s;
+}
+
+#overlay.drag {
+    /* 背景色を半透明の青にする */
+    background: rgba(67, 67, 132, 0.33);
+}
+
+/*==============================================================
+    ヘッダー(header)
+==============================================================*/
+
+header {
+    /* 上部に独立して置く */
+    position: fixed;
+    left: 0;
+    top: 0;
+    /* 高さ4rem取る */
+    height: 4rem;
+    width: 100%;
+    /* 背景色を技研カラーにする */
+    background: #222244;
+    /* 影を作る */
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.7);
+    /* mainより上に配置する */
+    z-index: 10;
+    /* 中身を横並びにするためにflexboxを有効化 */
+    display: flex;
+    /* 子要素の間に2rem隙間を設ける */
+    gap: 2rem;
+    /* 子要素を中央に寄せる */
+    justify-content: center;
+    /* 子要素を選択不可能にする */
+    user-select: none;
+}
+
+header>* {
+    /* 高さを3remに制限 */
+    height: 3rem;
+    /* 上下0.5remにmarginをとって中央に配置 */
+    margin: 0.5rem 0;
+    /* 文字も上下中央揃え */
+    font-size: 1.25rem;
+    line-height: 3rem;
+}
+
+header>img {
+    width: 3rem;
+}
+
+/*==============================================================
+    ビューワー部分(main)
+==============================================================*/
+
+main {
+    /* ファイル一覧とファイル本文を横並びにするためにflexboxを有効にする */
+    display: flex;
+    /* 画面いっぱいに表示させる */
+    height: 100%;
+}
+
+main>* {
+    /* 横にはみ出したら隠す */
+    overflow-x: hidden;
+    /* 縦にはみ出したらスクロール可能に */
+    overflow-y: scroll;
+    /* 中身の要素は端から0.5rem離す */
+    padding: 0.5rem;
+    /* headerに隠れる分の調整のために上だけpaddingを6.5remに */
+    padding-top: 6.5rem;
+}
+
+#list {
+    /* 全体の25%を占める */
+    width: 25%;
+    /* 背景色を黒っぽくする */
+    background: #171717;
+    /* 影を作る */
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.7);
+}
+
+#viewer {
+    /* 全体の75%を占める */
+    width: 75%;
+}
+
+@media screen and (max-width:600px) {
+    main>* {
+        transition: width 0.3s;
+    }
+
+    #list {
+        width: 3%;
+    }
+
+    #viewer {
+        width: 97%;
+    }
+
+    #list:hover {
+        width: 85%;
+    }
+
+    #list:hover+#viewer {
+        width: 15%;
+    }
+
+    main>* * {
+        transition: opacity 0.3s;
+    }
+
+    #list * {
+        opacity: 0;
+    }
+
+    #list:hover * {
+        opacity: 1;
+    }
+
+    #viewer * {
+        opacity: 1;
+    }
+
+    #list:hover+#viewer * {
+        opacity: 0;
+    }
+}
+
+/*==============================================================
+    リストとビューワーのスクロールバー(main>*::-webkit-scrollbar)
+==============================================================*/
+
+main>*::-webkit-scrollbar {
+    width: 4px;
+}
+
+main>*::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 4px;
+}
+
+/*==============================================================
+    ファイル一覧(#list)
+==============================================================*/
+
+#list>button {
+    /* ブロック要素に変更 */
+    display: block;
+    /* 幅を一杯に取る */
+    width: 100%;
+    /* 高さを揃える */
+    height: 2rem;
+    /* 背景色を少しだけ明るく */
+    background: #202020;
+    /* 角を丸める */
+    border-radius: 0.5rem;
+    /* 文字列は左揃えに */
+    text-align: left;
+    /* 文字列文字列が端により過ぎないようにpadding-leftを設定 */
+    padding-left: 0.5rem;
+    /* ホバー・クリック・ファイル選択時のアニメーションを許可 */
+    transition: background 0.2s;
+    /* はみ出したら隠す */
+    overflow: hidden;
+    /* 改行を封じる */
+    line-height: 2rem;
+}
+
+#list>*+button {
+    /* 直前のbuttonとの間に隙間を設ける */
+    margin-top: 0.25rem;
+}
+
+#list>button>b {
+    /* 文字を1段階太くする */
+    font-weight: bolder;
+    /* ファイル名との間に隙間を設ける */
+    padding-right: 0.5rem;
+    /* 文字サイズを少し大きくする */
+    font-size: 0.95rem;
+    /* 改行位置を自由にする */
+    word-break: break-all;
+}
+
+#list>button>sub {
+    /* 文字を薄くする */
+    opacity: 0.5;
+    /* 文字の下を揃える */
+    vertical-align: bottom;
+    /* 改行位置を自由にする */
+    word-break: break-all;
+}
+
+#list>button:hover {
+    /* 背景色を少しだけ明るく */
+    background: #282828;
+}
+
+#list>button:active {
+    /* 背景色を少しだけ暗く */
+    background: #171717;
+}
+
+#list>button.now {
+    /* 背景色を明るく */
+    background: #333333;
+}
+
+#list>button:hover {
+    /* 背景色を少しだけ明るく */
+    background: #3c3c3c;
+}
+
+#list>button:active {
+    /* 背景色を少しだけ暗く */
+    background: #303030;
+}
