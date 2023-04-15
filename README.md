@@ -12,9 +12,12 @@ AyaExpTech, Ayasaka-Koto
 Follow one of the following licenses.
 
 - "AeTOS for Everyone" …… https://axtech.dev/license/
-- "The MIT License" …… https://licenses.opensource.jp/MIT/MIT.html
 
 ## 更新履歴
+
+2023-04-15 `v1.1.2`
+- 規約からMIT Licenseを削除
+    - v1.1.1まではMITで使えはする
 
 2023-04-15 `v1.1.1`
 - 2件のバグ修正
