@@ -80,34 +80,40 @@ window.addEventListener("load", function () {
         })
         // 6. すべてのファイルに対してmd→htmlを行いグローバル配列`htmlList`に格納
         htmlList = [];
+        const promises = [];
         for (let i = 0; i < fileList.length; i++) {
-            // ⅰ. とりあえず読ませる
-            const reader = new FileReader();
-            reader.readAsText(fileList[i]);
-            reader.onload = (event) => {
-                // ⅱ. 文書を保管するためのarticle要素を用意
-                let article = document.createElement("article");
-                // ⅲ. 読み込んだtextをmarkedに渡してhtml文字列にparse
-                article.innerHTML = marked.parse(reader.result);
-                console.log(article);
-                // ⅳ. htmlListにぶん投げる
-                htmlList[i] = article;
-            };
+            promises.push(new Promise((resolve) => {
+                // ⅰ. とりあえず読ませる
+                const reader = new FileReader();
+                reader.readAsText(fileList[i]);
+                reader.onload = (event) => {
+                    // ⅱ. 文書を保管するためのarticle要素を用意
+                    let article = document.createElement("article");
+                    // ⅲ. 読み込んだtextをmarkedに渡してhtml文字列にparse
+                    article.innerHTML = marked.parse(reader.result);
+                    console.log(article);
+                    // ⅳ. htmlListにぶん投げる
+                    htmlList[i] = article;
+                    resolve();
+                };
+            }));
         }
-        // 7. div#listの中のbuttonを再生成
-        $(`#list`)[0].innerHTML = "";
-        for (let i = 0; i < fileList.length; i++) {
-            let button = document.createElement("button");
-            let title = document.createElement("b");
-            let name = document.createElement("sub");
-            title.innerText = htmlList[i].querySelector(`h1`).innerText;
-            name.innerText = fileList[i].name;
-            button.appendChild(title);
-            button.appendChild(name);
-            button.setAttribute('onclick', `loadFile(${i})`);
-            $(`#list`)[0].appendChild(button);
-        }
-        // 7. とりあえず一番最初のファイルを開いておく(すでに開いたことがあればそれが開く)
-        loadFile(nowOpen);
+        Promise.all(promises).then(() => {
+            // 7. div#listの中のbuttonを再生成
+            $(`#list`)[0].innerHTML = "";
+            for (let i = 0; i < fileList.length; i++) {
+                let button = document.createElement("button");
+                let title = document.createElement("b");
+                let name = document.createElement("sub");
+                title.innerText = htmlList[i].querySelector(`h1`).innerText;
+                name.innerText = fileList[i].name;
+                button.appendChild(title);
+                button.appendChild(name);
+                button.setAttribute('onclick', `loadFile(${i})`);
+                $(`#list`)[0].appendChild(button);
+            }
+            // 7. とりあえず一番最初のファイルを開いておく(すでに開いたことがあればそれが開く)
+            loadFile(nowOpen);
+        });
     });
 });
