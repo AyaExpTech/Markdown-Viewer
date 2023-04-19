@@ -105,7 +105,7 @@ window.addEventListener("load", function () {
                 let button = document.createElement("button");
                 let title = document.createElement("b");
                 let name = document.createElement("sub");
-                title.innerText = htmlList[i].querySelector(`h1`).innerText;
+                title.innerText = (htmlList[i].querySelector(`h1`) ?? { "innerText": "" }).innerText;
                 name.innerText = fileList[i].name;
                 button.appendChild(title);
                 button.appendChild(name);

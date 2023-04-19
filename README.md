@@ -15,6 +15,9 @@ Follow one of the following licenses.
 
 ## 更新履歴
 
+2023-04-19 `v1.1.3`
+- 大見出し(`# 見出し`)がないmarkdownが読み込めないバグを修正
+
 2023-04-15 `v1.1.2`
 - 規約からMIT Licenseを削除
     - v1.1.1まではMITで使えはする
